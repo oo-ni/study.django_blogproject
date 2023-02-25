@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% load static %}
+
+    <main>
+
+        <section class="py-5 text-center bg-secondary bg-gradient text-white container">
+            <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">My Portfolio</h1>
+                <p class="lead text-white">내가 만든 사진 너를 위해 찍었지</p>
+            </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for portfolio in portfolios.all %}
+                <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ portfolio.image.url }}" alt="">
+                    <div class="card-body">
+                    <h4>{{ portfolio.title }} </h4>
+                    <p class="card-text">{{ portfolio.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                        <small class="text-muted">{{ portfolio.pub_date }}</small>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}
