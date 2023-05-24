@@ -23,6 +23,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'portfolio' %}">포트폴리오</a>
                     </li>
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> 환영합니다. {{ user.username }} 님! </a>
+                        <ul class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:{document.getElementById('signout').submit()}">Sign out</a>
+                            <form id="signout" method="POST" action="{% url 'signout' %}">
+                                {% csrf_token %} <input type="hidden" />
+                            </form>
+                        </ul>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         글쓰기
@@ -30,10 +41,20 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'write' %}">일기</a></li>
                             <li><a class="dropdown-item" href="{% url 'writepf' %}">사진</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
+
+                    {% else %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signin' %}">Sign In</a>
+                    </li>
+
+                    {% endif %}
+
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
