@@ -1,0 +1,15 @@
+
+# venv
+ygw/
+.venv/
+venv/
+env/
+
+# python
+__pycache__/
+*.py[cod]
+
+# django
+db.sqlite3
+*.log
+.env
